@@ -13,23 +13,28 @@
             --neon-blue: #00d2ff;
             --neon-pink: #ff007f;
             --green: #3fb950;
+            --purple-glow: #bc13fe;
         }
         body {
             background-color: var(--bg);
+            /* Orqa fon rasmga qarab ranglar uyg'unligi */
+            background: linear-gradient(180deg, #0f121d 0%, #1a0b2e 100%);
             color: white;
-            font-family: sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding-bottom: 80px;
+            padding-bottom: 90px;
         }
         .header {
             text-align: center;
             padding: 25px 10px;
+            border-bottom: 1px solid rgba(0, 210, 255, 0.2);
         }
         .header h1 {
-            font-size: 24px;
+            font-size: 26px;
             margin: 0;
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
         }
-        .header .name { color: var(--gold); } /* ISMINGIZ OLTIN RANGDA */
+        .header .name { color: var(--gold); }
         .header .pay { color: #58a6ff; }
 
         .section-label {
@@ -37,50 +42,93 @@
             font-weight: bold;
             display: flex;
             justify-content: space-between;
+            align-items: center;
         }
-        .section-label span { color: var(--neon-blue); margin-right: 5px; }
+        .section-label div { display: flex; align-items: center; }
+        .section-label span { 
+            color: var(--neon-blue); 
+            margin-right: 8px; 
+            font-size: 20px;
+            text-shadow: 0 0 5px var(--neon-blue);
+        }
+        .hammasi-btn {
+            color: #58a6ff;
+            text-decoration: none;
+            font-size: 13px;
+            cursor: pointer;
+        }
 
         .grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            padding: 0 10px;
+            gap: 12px;
+            padding: 0 15px;
         }
 
         .card {
             background: var(--card-bg);
-            border-radius: 15px;
-            padding: 8px;
+            border-radius: 18px;
+            padding: 10px;
             text-align: center;
-            border: 2px solid var(--neon-blue); /* Neon chiziq */
-            box-shadow: 0 0 10px rgba(0, 210, 255, 0.2);
+            border: 2px solid var(--neon-blue);
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.15);
+            transition: transform 0.2s;
         }
+        .card:active { transform: scale(0.95); }
 
+        /* Rasmlarni rasmga moslab (image_a3648a.jpg) dumaloq va neon qildim */
         .card img {
             width: 100%;
             aspect-ratio: 1/1;
-            border-radius: 50%; /* Dumaloq rasmlar */
+            border-radius: 50%;
             object-fit: cover;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            border: 2px solid var(--purple-glow);
+            box-shadow: 0 0 8px var(--purple-glow);
         }
 
-        .price { color: var(--green); font-weight: bold; font-size: 11px; }
-        .title { font-size: 12px; margin: 5px 0; }
+        /* Ilovalar rasmlari yaxshi ko'rinishi uchun */
+        .app-img {
+            background: white;
+            padding: 5px;
+            box-sizing: border-box;
+        }
 
+        .price { color: var(--neon-pink); font-weight: bold; font-size: 11px; margin-top: 4px; }
+        .title { font-size: 12px; font-weight: 500; margin: 5px 0; }
+
+        /* Pastki tugmalar (image_a3604b.jpg dagi kabi) */
         .nav {
             position: fixed;
             bottom: 0;
             width: 100%;
-            background: #161b22;
+            background: rgba(22, 27, 34, 0.95);
+            backdrop-filter: blur(10px);
             display: flex;
             justify-content: space-around;
-            padding: 15px 0;
-            border-top: 1px solid #30363d;
+            padding: 12px 0;
+            border-top: 1px solid rgba(0, 210, 255, 0.3);
+            z-index: 100;
         }
-        .nav-item { color: #8b949e; text-decoration: none; font-size: 11px; text-align: center; cursor: pointer; }
-        .active { color: var(--neon-blue); }
-        .footer-bot { text-align: center; color: #555; font-size: 10px; padding: 10px; }
+        .nav-item { 
+            color: #8b949e; 
+            text-decoration: none; 
+            font-size: 12px; 
+            text-align: center; 
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .nav-item.active { color: var(--neon-blue); text-shadow: 0 0 8px var(--neon-blue); }
+        .nav-item i { font-size: 20px; display: block; margin-bottom: 4px; }
+
+        .footer-bot { 
+            text-align: center; 
+            color: rgba(255,255,255,0.3); 
+            font-size: 11px; 
+            padding: 20px 0; 
+        }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
@@ -88,10 +136,15 @@
     <h1><span class="name">Ulug'bek</span> <span class="pay">Pay</span></h1>
 </div>
 
-<div class="section-label"><div><span>|</span> O'yinlar</div> <small style="color:#58a6ff">Hammasi ></small></div>
+<div class="section-label">
+    <div><span>|</span> O'yinlar</div> 
+    <div class="hammasi-btn" onclick="navTo('all_games')">Hammasi ></div>
+</div>
+
 <div class="grid">
     <div class="card" onclick="sendOrder('Brawl Stars', '120,000 UZS')">
-        <img src="image_a27045.jpg"> <div class="title">Brawl Stars</div>
+        <img src="image_a27045.jpg"> 
+        <div class="title">Brawl Stars</div>
         <div class="price">120,000 UZS</div>
     </div>
     <div class="card" onclick="sendOrder('Standoff 2', '150,000 UZS')">
@@ -106,20 +159,24 @@
     </div>
 </div>
 
-<div class="section-label"><div><span>|</span> Ilovalar & Servislar</div> <small style="color:#58a6ff">Hammasi ></small></div>
+<div class="section-label">
+    <div><span>|</span> Ilovalar & Servislar</div> 
+    <div class="hammasi-btn" onclick="navTo('all_apps')">Hammasi ></div>
+</div>
+
 <div class="grid">
     <div class="card" onclick="sendOrder('YouTube Premium', '45,000 UZS')">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/d/dd/YouTube_Premium_logo.svg">
+        <img class="app-img" src="https://upload.wikimedia.org/wikipedia/commons/d/dd/YouTube_Premium_logo.svg">
         <div class="title">YouTube</div>
         <div class="price">45,000 UZS</div>
     </div>
-    <div class="card" onclick="sendOrder('ChatGPT Plus', '260,000 UZS')">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg">
-        <div class="title">ChatGPT</div>
-        <div class="price">260,000 UZS</div>
+    <div class="card" onclick="sendOrder('Spotify Premium', '40,000 UZS')">
+        <img class="app-img" src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg">
+        <div class="title">Spotify</div>
+        <div class="price">40,000 UZS</div>
     </div>
     <div class="card" onclick="sendOrder('Netflix', '110,000 UZS')">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg">
+        <img class="app-img" src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg">
         <div class="title">Netflix</div>
         <div class="price">110,000 UZS</div>
     </div>
@@ -128,26 +185,34 @@
 <div class="footer-bot">@ai_p6y_bot</div>
 
 <div class="nav">
-    <div class="nav-item active">🏠<br>Do'kon</div>
-    <div class="nav-item" onclick="navTo('bonus')">⭐<br>Bonus</div>
-    <div class="nav-item" onclick="navTo('chat')">🎧<br>Yordam</div>
-    <div class="nav-item" onclick="exitApp()">🚪<br>Chiqish</div>
+    <div class="nav-item active" onclick="navTo('home')"><i class="fas fa-th-large"></i>Do'kon</div>
+    <div class="nav-item" onclick="navTo('bonus')"><i class="fas fa-star"></i>Bonus</div>
+    <div class="nav-item" onclick="navTo('chat')"><i class="fas fa-headset"></i>Yordam</div>
+    <div class="nav-item" onclick="exitApp()"><i class="fas fa-sign-out-alt"></i>Chiqish</div>
 </div>
 
 <script>
     const tg = window.Telegram.WebApp;
     tg.expand();
+    tg.headerColor = '#0f121d';
 
     function sendOrder(item, price) {
         tg.sendData(`Buyurtma: ${item}\nNarxi: ${price}`);
     }
 
     function navTo(page) {
-        if (page === 'chat') tg.openTelegramLink("https://t.me/urinbaev_1804");
-        else alert(page + " bo'limi tez orada ishga tushadi!");
+        if (page === 'chat') {
+            tg.openTelegramLink("https://t.me/urinbaev_1804");
+        } else if (page === 'home') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            tg.showAlert(page + " bo'limi tez orada ishga tushadi!");
+        }
     }
 
-    function exitApp() { tg.close(); }
+    function exitApp() {
+        tg.close();
+    }
 </script>
 </body>
 </html>
