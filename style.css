@@ -1,24 +1,16 @@
-.card img {
-    width: 100%;
-    aspect-ratio: 1/1;
-    border-radius: 50%;
-    /* MUHIM: Rasm butun ko'rinishi uchun */
-    object-fit: contain; 
-    background-color: #ffffff; /* Oq fon rasmni ochib beradi */
-    border: 2px solid var(--purple-glow);
-    box-shadow: 0 0 10px var(--purple-glow);
+.card img, .app-img {
+    width: 85px !important;       /* Rasmni eni */
+    height: 85px !important;      /* Rasmni bo'yi */
+    border-radius: 50% !important;/* Dumaloq shakl */
+    object-fit: cover !important; /* Rasm cho'zilmasligi uchun */
+    margin: 10px auto !important; /* Markazga qo'yish */
+    display: block;
+    background: #ffffff;          /* Logotiplar orqasi oq bo'lsin */
+    border: 2px solid #bc13fe;    /* Neon hoshiya */
+    box-shadow: 0 0 10px #bc13fe;
 }
 
-
-/* Ilovalar logotiplari uchun maxsus (YouTube, Spotify va h.k.) */
 .app-img {
-    width: 100% !important;
-    aspect-ratio: 1 / 1;
-    object-fit: contain !important; /* Logotip qirqilmasligi uchun */
-    padding: 12px;                  /* Chetidan masofa */
-    background: #ffffff !important;   /* Oq fon logotipni ochib beradi */
-    border-radius: 18px !important;  /* Biroz kvadratroq shakl */
-    box-sizing: border-box;
+    object-fit: contain !important; /* Ilova logotiplari qirqilmasin */
+    padding: 10px;                  /* Ichkaridan masofa */
 }
-
-
