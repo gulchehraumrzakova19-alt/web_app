@@ -1,0 +1,32 @@
+/* Rasmlarni qolipga moslash (O'yinlar uchun) */
+.card img {
+    width: 100%;             /* Kartochka kengligiga to'liq moslashadi */
+    height: auto;            /* Balandlikni avtomatik oladi */
+    aspect-ratio: 1 / 1;     /* Rasmni kvadrat shaklida ushlab turadi */
+    border-radius: 50%;      /* Dumaloq shakl (Siz xohlagandek) */
+    object-fit: contain;     /* MUHIM: Rasmning hech bir qismi qolib ketmaydi */
+    background: #1a1e2e;     /* Rasm kichik bo'lsa, orqa fon to'ldiriladi */
+    margin-bottom: 8px;
+    border: 2px solid var(--purple-glow);
+    box-shadow: 0 0 10px var(--purple-glow);
+}
+
+/* Ilovalar logotiplari uchun maxsus (YouTube, Spotify va h.k.) */
+.app-img {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1;
+    object-fit: contain !important; /* Logotip to'liq ko'rinadi */
+    padding: 10px;                  /* Chetidan masofa */
+    background: white !important;   /* Logotiplar oq fonda yaxshi ko'rinadi */
+    border-radius: 15px !important; /* Ilovalar uchun kvadratroq shakl */
+}   
+
+.card img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    object-fit: contain; /* Rasm o'lchamini buzmasdan qolibga sig'diradi */
+    background: #ffffff; /* Logotip foni oq bo'lsa yaxshi ko'rinadi */
+    border: 2px solid var(--neon-blue);
+}
