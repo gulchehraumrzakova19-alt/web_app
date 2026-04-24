@@ -1,248 +1,131 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ulug'bek Pay</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <style>
-        :root {
-            --bg: #0f121d;
-            --card-bg: #1a1e2e;
-            --gold: #ffd700;
-            --neon-blue: #00d2ff;
-            --neon-pink: #ff007f;
-            --green: #3fb950;
-            --purple-glow: #bc13fe;
-        }
-        body {
-            background-color: var(--bg);
-            /* Orqa fon rasmga qarab ranglar uyg'unligi */
-            background: linear-gradient(180deg, #0f121d 0%, #1a0b2e 100%);
-            color: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding-bottom: 90px;
-        }
-        .header {
-            text-align: center;
-            padding: 25px 10px;
-            border-bottom: 1px solid rgba(0, 210, 255, 0.2);
-        }
-        .header h1 {
-            font-size: 26px;
-            margin: 0;
-            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
-        }
-        .header .name { color: var(--gold); }
-        .header .pay { color: #58a6ff; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ulug'bek Pay PRO</title>
 
-        .section-label {
-            padding: 15px;
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .section-label div { display: flex; align-items: center; }
-        .section-label span { 
-            color: var(--neon-blue); 
-            margin-right: 8px; 
-            font-size: 20px;
-            text-shadow: 0 0 5px var(--neon-blue);
-        }
-        .hammasi-btn {
-            color: #58a6ff;
-            text-decoration: none;
-            font-size: 13px;
-            cursor: pointer;
-        }
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            padding: 0 15px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 18px;
-            padding: 10px;
-            text-align: center;
-            border: 2px solid var(--neon-blue);
-            box-shadow: 0 0 15px rgba(0, 210, 255, 0.15);
-            transition: transform 0.2s;
-        }
-        .card:active { transform: scale(0.95); }
-
-        /* Rasmlarni rasmga moslab (image_a3648a.jpg) dumaloq va neon qildim */
-        .card img {
-            width: 100%;
-            aspect-ratio: 1/1;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 8px;
-            border: 2px solid var(--purple-glow);
-            box-shadow: 0 0 8px var(--purple-glow);
-        }
-
-        /* Ilovalar rasmlari yaxshi ko'rinishi uchun */
-        .app-img {
-            background: white;
-            padding: 5px;
-            box-sizing: border-box;
-        }
-
-        .price { color: var(--neon-pink); font-weight: bold; font-size: 11px; margin-top: 4px; }
-        .title { font-size: 12px; font-weight: 500; margin: 5px 0; }
-
-        /* Pastki tugmalar (image_a3604b.jpg dagi kabi) */
-        .nav {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background: rgba(22, 27, 34, 0.95);
-            backdrop-filter: blur(10px);
-            display: flex;
-            justify-content: space-around;
-            padding: 12px 0;
-            border-top: 1px solid rgba(0, 210, 255, 0.3);
-            z-index: 100;
-        }
-        .nav-item { 
-            color: #8b949e; 
-            text-decoration: none; 
-            font-size: 12px; 
-            text-align: center; 
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .nav-item.active { color: var(--neon-blue); text-shadow: 0 0 8px var(--neon-blue); }
-        .nav-item i { font-size: 20px; display: block; margin-bottom: 4px; }
-
-        .footer-bot { 
-            text-align: center; 
-            color: rgba(255,255,255,0.3); 
-            font-size: 11px; 
-            padding: 20px 0; 
-        }
-    </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+body{margin:0;font-family:sans-serif;background:#0f121d;color:white;padding-bottom:90px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:10px}
+.card{background:#1a1e2e;border-radius:15px;padding:10px;text-align:center;border:2px solid #00d2ff}
+.card img{width:80px;height:80px;border-radius:50%;object-fit:cover}
+.nav{position:fixed;bottom:0;width:100%;display:flex;justify-content:space-around;background:#111;padding:10px 0}
+.nav-item{text-align:center;font-size:12px;color:#aaa}
+.nav-item i{display:block;font-size:20px}
+.active{color:#00d2ff}
+input{width:90%;margin:5px auto;display:block;padding:8px;border-radius:8px;border:none}
+button{width:90%;margin:10px auto;display:block;padding:10px;border:none;border-radius:10px;background:#00d2ff;color:black;font-weight:bold}
+</style>
 </head>
+
 <body>
 
-<div class="header">
-    <h1><span class="name">Ulug'bek</span> <span class="pay">Pay</span></h1>
-</div>
+<h2 style="text-align:center">Ulug'bek Pay PRO</h2>
 
-<div class="section-label">
-    <div><span>|</span> O'yinlar</div> 
-    <div class="hammasi-btn" onclick="navTo('all_games')">Hammasi ></div>
-</div>
+<input id="email" placeholder="Email">
+<input id="scid" placeholder="ID">
 
-<div class="section-label">
-    <div><span>|</span> O'yinlar</div> 
-</div>
-
+<h3 style="padding-left:10px">O'yinlar</h3>
 <div class="grid">
-    <div class="card" onclick="sendOrder('Brawl Stars', '120,000 UZS')">
-        <img src="https://img.redbull.com/images/c_fill,g_auto,w_450,h_450/q_auto,f_auto/redbullcom/2020/4/21/idm0yvp297079bvn3ks7/brawl-stars-logo"> 
-        <div class="title">Brawl Stars</div>
-        <div class="price">120,000 UZS</div>
-    </div>
 
-    <div class="card" onclick="sendOrder('Standoff 2', '150,000 UZS')">
-        <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/3d/8c/e7/3d8ce7b5-236b-67a6-4074-67a21691a566/AppIcon-0-0-1x_U007eapple_2x-0-4-0-85-220.png/230x0w.webp">
-        <div class="title">Standoff 2</div>
-        <div class="price">150,000 UZS</div>
-    </div>
-
-    <div class="card" onclick="sendOrder('PUBG Mobile', '180,000 UZS')">
-        <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/74/09/73/740973a0-7170-1793-6623-665977936136/AppIcon-0-0-1x_U007emarketing-0-5-0-0-85-220.png/230x0w.webp">
-        <div class="title">PUBG Mobile</div>
-        <div class="price">180,000 UZS</div>
-    </div>
-
-    <div class="card" onclick="sendOrder('Free Fire', '65,000 UZS')">
-        <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/31/3d/3f/313d3f11-9a91-4977-94f4-06107386045d/AppIcon-0-0-1x_U007emarketing-0-7-0-85-220.png/230x0w.webp">
-        <div class="title">Free Fire</div>
-        <div class="price">65,000 UZS</div>
-    </div>
-
-    <div class="card" onclick="sendOrder('Roblox', '85,000 UZS')">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Roblox_player_icon_black.svg" style="background: white; padding: 5px;">
-        <div class="title">Roblox</div>
-        <div class="price">85,000 UZS</div>
-    </div>
-
-    <div class="card" onclick="sendOrder('Minecraft', '220,000 UZS')">
-        <img src="https://static.wikia.nocookie.net/minecraft_gamepedia/images/e/e9/Minecraft_icon.png">
-        <div class="title">Minecraft</div>
-        <div class="price">220,000 UZS</div>
-    </div>
+<div class="card" onclick="addToCart('Brawl Stars',120000)">
+<img src="https://upload.wikimedia.org/wikipedia/en/6/6f/Brawl_Stars_icon.png">
+<div>Brawl Stars</div>
 </div>
 
-<div class="section-label">
-    <div><span>|</span> Servislar</div> 
-</div>
-<div class="grid">
-    <div class="card" onclick="sendOrder('YouTube Premium', '45,000 UZS')">
-        <img class="app-img" src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png">
-        <div class="title">YouTube</div>
-        <div class="price">45,000 UZS</div>
-    </div>
-
-    <div class="card" onclick="sendOrder('TG Premium', '40,000 UZS')">
-        <img class="app-img" src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg">
-        <div class="title">TG Premium</div>
-        <div class="price">40,000 UZS</div>
-    </div>
-
-    <div class="card" onclick="sendOrder('Discord Nitro', '95,000 UZS')">
-        <img class="app-img" src="https://www.svgrepo.com/show/353655/discord-icon.svg">
-        <div class="title">Discord Nitro</div>
-        <div class="price">95,000 UZS</div>
-    </div>
-
-    <div class="card" onclick="sendOrder('Canva Pro', '35,000 UZS')">
-        <img class="app-img" src="https://upload.wikimedia.org/wikipedia/commons/0/08/Canva_icon_2021.svg">
-        <div class="title">Canva Pro</div>
-        <div class="price">35,000 UZS</div>
-    </div>
+<div class="card" onclick="addToCart('PUBG',180000)">
+<img src="https://upload.wikimedia.org/wikipedia/en/0/03/PUBG_Mobile_logo.png">
+<div>PUBG</div>
 </div>
 
-<div class="footer-bot">@ai_p6y_bot</div>
+<div class="card" onclick="addToCart('Minecraft',220000)">
+<img src="https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png">
+<div>Minecraft</div>
+</div>
+
+</div>
+
+<h3 style="padding-left:10px">Savatcha</h3>
+<div id="cart"></div>
+
+<button onclick="checkout()">💳 To'lov qilish</button>
 
 <div class="nav">
-    <div class="nav-item active" onclick="navTo('home')"><i class="fas fa-th-large"></i>Do'kon</div>
-    <div class="nav-item" onclick="navTo('bonus')"><i class="fas fa-star"></i>Bonus</div>
-    <div class="nav-item" onclick="navTo('chat')"><i class="fas fa-headset"></i>Yordam</div>
-    <div class="nav-item" onclick="exitApp()"><i class="fas fa-sign-out-alt"></i>Chiqish</div>
+<div class="nav-item active"><i class="fas fa-home"></i>Home</div>
+<div class="nav-item"><i class="fas fa-shopping-cart"></i>Cart</div>
+<div class="nav-item"><i class="fas fa-user"></i>Admin</div>
+<div class="nav-item" onclick="tg.close()"><i class="fas fa-sign-out"></i>Exit</div>
 </div>
 
 <script>
-    const tg = window.Telegram.WebApp;
-    tg.expand();
-    tg.headerColor = '#0f121d';
+const tg = window.Telegram.WebApp;
+tg.ready();
+if(tg.expand) tg.expand();
 
-    function sendOrder(item, price) {
-        tg.sendData(`Buyurtma: ${item}\nNarxi: ${price}`);
+let cart = [];
+
+// 🛒 qo‘shish
+function addToCart(item, price){
+    cart.push({
+        item: String(item),
+        price: Number(price)
+    });
+
+    tg.showAlert(item + " qo'shildi");
+    renderCart();
+}
+
+// 🧾 ko‘rsatish
+function renderCart(){
+    let html = "";
+    cart.forEach((c,i)=>{
+        html += `
+        <div style="padding:5px">
+            ${c.item} - ${c.price} 
+            <button onclick="removeItem(${i})">❌</button>
+        </div>`;
+    });
+    document.getElementById("cart").innerHTML = html;
+}
+
+// ❌ o‘chirish
+function removeItem(i){
+    cart.splice(i,1);
+    renderCart();
+}
+
+// 💳 checkout
+function checkout(){
+    if(cart.length === 0){
+        tg.showAlert("Savatcha bo'sh");
+        return;
     }
 
-    function navTo(page) {
-        if (page === 'chat') {
-            tg.openTelegramLink("https://t.me/urinbaev_1804");
-        } else if (page === 'home') {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else {
-            tg.showAlert(page + " bo'limi tez orada ishga tushadi!");
-        }
-    }
+    const data = {
+        cart: cart,
+        email: document.getElementById("email").value || "",
+        supercell_id: document.getElementById("scid").value || ""
+    };
 
-    function exitApp() {
-        tg.close();
-    }
+    console.log("YUBORILDI:", data);
+
+    tg.sendData(JSON.stringify(data));
+
+    tg.showAlert("So'rov yuborildi ✅");
+
+    cart = [];
+    renderCart();
+}
 </script>
+
+<div id="loader">
+  <div class="spinner"></div>
+  <p>Yuklanmoqda...</p>
+</div>
+
 </body>
 </html>
